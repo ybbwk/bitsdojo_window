@@ -1,6 +1,5 @@
 library bitsdojo_window_windows;
 
-import 'dart:ui';
 import 'package:flutter/widgets.dart';
 import 'package:bitsdojo_window_platform_interface/bitsdojo_window_platform_interface.dart';
 import './window.dart';
@@ -14,7 +13,7 @@ class BitsdojoWindowWindows extends BitsdojoWindowPlatform {
 
   @override
   void doWhenWindowReady(VoidCallback callback) {
-    WidgetsBinding.instance!.waitUntilFirstFrameRasterized.then((value) {
+    WidgetsBinding.instance.waitUntilFirstFrameRasterized.then((value) {
       isInsideDoWhenWindowReady = true;
       setWindowCanBeShown(true);
       callback();

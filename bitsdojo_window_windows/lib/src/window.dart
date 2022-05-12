@@ -1,5 +1,4 @@
-import 'dart:ffi';
-import 'dart:ui';
+import 'dart:ffi' as FFI;
 import 'package:flutter/painting.dart';
 
 import 'package:ffi/ffi.dart';
@@ -23,7 +22,8 @@ bool isValidHandle(int? handle, String operation) {
 
 Rect getScreenRectForWindow(int handle) {
   int monitor = MonitorFromWindow(handle, MONITOR_DEFAULTTONEAREST);
-  final monitorInfo = calloc<MONITORINFO>()..ref.cbSize = sizeOf<MONITORINFO>();
+  final monitorInfo = calloc<MONITORINFO>()
+    ..ref.cbSize = FFI.sizeOf<MONITORINFO>();
   final result = GetMonitorInfo(monitor, monitorInfo);
   if (result == TRUE) {
     return Rect.fromLTRB(
